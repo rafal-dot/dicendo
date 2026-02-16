@@ -74,7 +74,11 @@ random_number = lehmer(dices_order)
 
 # Characters set for machine-storred, human-retyped passwords. For suggestions for (i) handwritten passwords or
 # (ii) passwords stored and processed entirely by machine, see the documentation
-ALPHABET = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%&()/?"
+# ALPHABET = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%&()/?"
+
+# Default full alphabet for passwords processed on computers and later used as copy-paste
+ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()<>-_=+;:,./?"
+
 ALPHABET_LEN = len(ALPHABET)
 # Faces are digits "1"-"6". 6 is translated to 0 in modulo operation
 DICE_FACES = 6
@@ -89,15 +93,18 @@ password length --->   8| 13|  |17       |32        |49
 dice rolls --+----->    v 1 v  v    2    v    3     v
              +-> 123456789012345678901234567890123456""")
     dice_rolls_string = input("Dice numbers   : ")
-    if dice_rolls_string == "":
-        break
     dice_directions_string = input("Dice directions: ")
     dice_order_string = input("Dice order     : ")
+    if dice_rolls_string == "" and dice_directions_string == "" and dice_order_string == "":
+        break
 
-    # Calculate random part from order of dices (=rolls!)
-    dices_order = [eval(i) for i in re.split("[-+*/=:;., ]", dice_order_string)]
-    #     random_number = Permutation(*dices_order).lehmer(len(dices_order))
-    random_number = lehmer(dices_order)
+    random_number = 0
+    dices_order = []
+    if dice_order_string != "":
+        # Calculate random part from order of dices (=rolls!)
+        dices_order = [eval(i) for i in re.split("[-+*/=:;., ]", dice_order_string)]
+        #     random_number = Permutation(*dices_order).lehmer(len(dices_order))
+        random_number = lehmer(dices_order)
 
     # Calculate random part from rolls of dices (6^rolls)
     for roll_char in dice_rolls_string:

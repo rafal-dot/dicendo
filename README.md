@@ -84,7 +84,8 @@ casino-grade dice, which are manufactured with very tight tolerances.
 DiceNDO converts your inputs into a single large integer and then converts that
 integer into a password using a fixed alphabet:
 
-Alphabet used for passwords is `abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%&()/?`.
+Alphabet used for passwords is
+`abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%&()/?`.
 
 Steps:
 
@@ -136,8 +137,8 @@ You will be prompted for:
 * Example: `5-6-4-1-2-3-12-11-9-10-7-8`
 
 Output:
-* the generated password
-* estimated entropy in bits
+* the generated password `Z<>mS_*?gmw%Q`
+* estimated entropy in bits `84`
 
 # Preparing dice for full functionality (rolls + direction + order)
 
@@ -175,8 +176,8 @@ For `N` dice, with:
 * directions: `4` possibilities per die
 * order: `N!` possibilities
 total outcome count is `N! * 6^N * 4^N`. So for `12` dice it is
-`17493304854426997594521600` possible passwords (~1.7 * 10^25), that is 79 bits
-of entropy.
+`17 493 304 854 426 997 594 521 600` possible passwords (~1.7 * 10^25), that is
+~80 bits of entropy.
 
 Why this matters:
 * This keeps the password length aligned with the amount of physical randomness
